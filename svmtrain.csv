@@ -1,0 +1,7 @@
+ImgListPath_Dir,ImgListPath_File_Name,Checkpoint_Root_Dir,Classifier_Root_Dir,Classifier_Model_Path,CaffeClassNames_File
+Path,svmtrain_all6classes.txt,Checkpoints,Checkpoint_1312,model_epoch500.ckpt.meta,caffe_classes_plamseed.py
+Path,svmtrain_all6classes.txt,Checkpoints,Checkpoint_2316,model_epoch500.ckpt.meta,caffe_classes_plamseed.py
+Path,svmtrain_all6classes.txt,Checkpoints,Checkpoint_3317,model_epoch500.ckpt.meta,caffe_classes_plamseed.py
+Path,svmtrain_all6classes.txt,Checkpoints,Checkpoint_4326,model_epoch500.ckpt.meta,caffe_classes_plamseed.py
+Path,svmtrain_all6classes.txt,Checkpoints,Checkpoint_5327,model_epoch500.ckpt.meta,caffe_classes_plamseed.py
+Path,svmtrain_all6classes.txt,Checkpoints,Checkpoint_6367,model_epoch500.ckpt.meta,caffe_classes_plamseed.py
