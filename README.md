@@ -20,5 +20,5 @@ Libraries include ````numpy, pandas, tensorflow, matplotlib````
 
 ````SVM_SoftmaxScore.ipynb````
 
-- Final layer scores are extracted to be using in SVM as input. The classes are separated using a hyperplane which is trained according to the distances of the scores (what SVM is)
+- Final layer scores are extracted to be using in SVM as input. The classes are separated using a hyperplane which is trained according to the distances from the score of the classes.
 
