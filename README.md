@@ -1,6 +1,8 @@
 # ImageClassification
 
-A simple implementation of multi-stage image classification using support vector machine (SVM). Further classification using Feature Vector and Softmax score
+A simple implementation of multi-stage image classification using support vector machine (SVM). Further classification using Feature Vector and Softmax score are done using SVM
+
+(This is not a deployment-ready code as much of the files are redacted)
 
 ## Getting Started
 
