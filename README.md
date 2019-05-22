@@ -22,3 +22,8 @@ Libraries include ````numpy, pandas, tensorflow, matplotlib````
 
 - Final layer scores are extracted to be using in SVM as input. The classes are separated using a hyperplane which is trained according to the distances from the score of the classes.
 
+# Result 
+
+The confusion matrix displayed below with accuracy of 93% using SVM
+
+![Confusion Matrix](https://raw.githubusercontent.com/Prem95/ImageClassification/master/Screenshot%202019-05-22%20at%208.18.01%20PM.png)
