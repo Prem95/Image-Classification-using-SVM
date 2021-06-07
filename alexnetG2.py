@@ -6,7 +6,7 @@ class AlexNet(object):
     """Implementation of the AlexNet."""
 
     def __init__(self, x, keep_prob, num_classes, skip_layer,
-                 weights_path='DEFAULT',load_pretrained_weight=False):
+                 weights_path='DEFAULT', load_pretrained_weight=False):
         """Create the graph of the AlexNet model.
 
         Args:
@@ -23,7 +23,7 @@ class AlexNet(object):
         self.NUM_CLASSES = num_classes
         self.KEEP_PROB = keep_prob
         self.SKIP_LAYER = skip_layer
-        self.load_pretrained_weight=load_pretrained_weight
+        self.load_pretrained_weight = load_pretrained_weight
         if weights_path == 'DEFAULT':
             self.WEIGHTS_PATH = 'bvlc_alexnet.npy'
         else:
@@ -65,33 +65,34 @@ class AlexNet(object):
         self.dropout7 = dropout(self.fc7, self.KEEP_PROB)
 
         # 8th Layer: FC and return unscaled activations
-        self.fc8 = fc(self.dropout7, 4096, self.NUM_CLASSES, relu=False, name='fc8')
+        self.fc8 = fc(self.dropout7, 4096, self.NUM_CLASSES,
+                      relu=False, name='fc8')
 
     def load_initial_weights(self, session):
-        ## b. Load Pre-trainied weights after you have trained model personally
-        if self.load_pretrained_weight==True:
-            print  ('Loading Pretrained weight.')
-            weights_dict=self.WEIGHTS_PATH
-            
+        # b. Load Pre-trainied weights after you have trained model personally
+        if self.load_pretrained_weight == True:
+            print('Loading Pretrained weight.')
+            weights_dict = self.WEIGHTS_PATH
+
             # Loop over all layer names stored in the weights dict
             for op in weights_dict:
                 # Check if the layer is one of the layers that should be reinitialized
                 if op not in self.SKIP_LAYER:
-                    OP_Name= op.name
-                    string_end=OP_Name.find('/',1)
-                    LayerName=OP_Name[:string_end]
+                    OP_Name = op.name
+                    string_end = OP_Name.find('/', 1)
+                    LayerName = OP_Name[:string_end]
                # Copy data to variable and assign it in a session
-                    with tf.variable_scope(LayerName,reuse = True):
-                        if len(op.shape)==1:
-                            var = tf.get_variable("biases", trainable = False)
-                            v_=session.run(op)
+                    with tf.variable_scope(LayerName, reuse=True):
+                        if len(op.shape) == 1:
+                            var = tf.get_variable("biases", trainable=False)
+                            v_ = session.run(op)
                             session.run(var.assign(v_))
                         else:
-                            var = tf.get_variable("weights", trainable = False)
-                            v_=session.run(op) 
-                            session.run(var.assign(v_))   
-             
-                
+                            var = tf.get_variable("weights", trainable=False)
+                            v_ = session.run(op)
+                            session.run(var.assign(v_))
+
+
 def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name,
          padding='SAME', groups=1):
     """Create a convolution layer.
@@ -102,9 +103,9 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name,
     input_channels = int(x.get_shape()[-1])
 
     # Create lambda function for the convolution
-    convolve = lambda i, k: tf.nn.conv2d(i, k,
-                                         strides=[1, stride_y, stride_x, 1],
-                                         padding=padding)
+    def convolve(i, k): return tf.nn.conv2d(i, k,
+                                            strides=[1, stride_y, stride_x, 1],
+                                            padding=padding)
 
     with tf.variable_scope(name) as scope:
         # Create tf variables for the weights and biases of the conv layer
@@ -123,7 +124,8 @@ def conv(x, filter_height, filter_width, num_filters, stride_y, stride_x, name,
         input_groups = tf.split(axis=3, num_or_size_splits=groups, value=x)
         weight_groups = tf.split(axis=3, num_or_size_splits=groups,
                                  value=weights)
-        output_groups = [convolve(i, k) for i, k in zip(input_groups, weight_groups)]
+        output_groups = [convolve(i, k)
+                         for i, k in zip(input_groups, weight_groups)]
 
         # Concat the convolved output together again
         conv = tf.concat(axis=3, values=output_groups)

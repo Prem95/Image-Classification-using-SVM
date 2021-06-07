@@ -8,13 +8,13 @@ A simple implementation of multi-stage image classification using support vector
 
 Libraries include ````numpy, pandas, tensorflow, matplotlib````
 
-1. This repository only contains the final stage of a multi-stage classification, which is classification using SVM by Softmax and Feature Vector
+1. alexnetG2.py - Main Alexnet implementation using the pretrained weights from the model zoo. The pretrained weights are related to ImageNet
+2. datagenerator.py - On-the-fly data generator for training
+3. caffe_classes.py - Contains the classes script for training
+4. finetune.py - Main implementation of the whole training pipeline using softmax
+5. testing.py - Sample script to perform the model testing using TF1
 
-2. Initial training checkpoint model and image files are not included
-
-3. Tested on Tensorflow 1.13.
-
-## Main Code
+## Helper Code
 
 ````SVM_FeatureVector.ipynb````
 
@@ -24,8 +24,11 @@ Libraries include ````numpy, pandas, tensorflow, matplotlib````
 
 - Final layer scores are extracted to be using in SVM as input. The classes are separated using a hyperplane which is trained according to the distances from the score of the classes.
 
-# Result 
+## Author
 
-The confusion matrix displayed below with accuracy of 93% using SVM
+Name: Prem Kumar
+Date: 7th June 2021
 
-![Confusion Matrix](https://raw.githubusercontent.com/Prem95/ImageClassification/master/Screenshot%202019-05-22%20at%208.18.01%20PM.png)
+## Help
+
+Please do reach out if more information or any help is required in running these files. Keep in mind that these files are reserved as a guide only.
